@@ -22,6 +22,7 @@ body {
   @apply font-serif;
   @apply bg-background;
   @apply text-foreground;
+  @apply min-w-[25rem] overflow-scroll;
 }
 
 header.page-banner {
@@ -58,17 +59,29 @@ section .text-col {
 }
 section .text-col h2 {
   @apply text-[2.6rem];
+  @apply overflow-hidden;
 }
 section .text-col p {
   @apply text-[1.3rem]/relaxed font-light;
 }
+section .text-col p.link a,
+section .text-col p.event {
+  @apply -indent-[1.5rem] ml-[1.5rem];
+}
+section .text-col p.link a {
+  @apply mb-[0.5rem];
+}
+section .text-col p.event {
+  @apply mb-[0.8rem];
+}
 
 section.about-me {
-  @apply flex-row-reverse;
+  @apply flex-row-reverse max-md:flex-col;
 }
 section.about-me .self-photo {
   @apply shrink-0;
-  @apply w-[15rem] h-fit aspect-square;
+  @apply w-[15rem] h-fit aspect-square max-w-full;
+  @apply max-md:mx-auto;
   @apply overflow-hidden rounded-full;
   @apply pointer-events-none;
 }
@@ -76,23 +89,25 @@ section.about-me .self-photo img {
   @apply relative object-cover object-center;
   @apply w-full h-full;
 }
+section.about-me .text-col {
+  @apply max-md:text-justify;
+}
 
+section.papers-events {
+  @apply max-lg:flex-col;
+}
 section.papers-events .text-col {
   @apply overflow-hidden;
 }
 section.papers-events .text-col h2,
 section.products .text-col h2 {
   @apply flex items-center;
-  @apply text-[2rem] text-nowrap;
+  @apply text-[2rem];
   @apply gap-[0.6rem] mb-[0.5rem];
 }
 section.papers-events .text-col p,
 section.products .text-col p {
   @apply text-[1.3rem]/snug;
-}
-section .text-col p.link a,
-section .text-col p:not(:has(a)) {
-  @apply -indent-[1.5rem] ml-[1.5rem] mb-[0.5rem];
 }
 
 section .text-col.links {
@@ -133,21 +148,25 @@ section .text-col.links p.link:has(a:focus-visible) {
 
 section.papers-events .text-col.events {
   @apply flex-1;
-  @apply min-w-[22rem] max-w-[65vh];
+  @apply lg:min-w-[22rem] lg:max-w-[65vh];
   @apply bg-foreground/5;
   @apply px-[1rem] pt-[0.5rem] pb-[1rem] rounded-[0.5rem];
-  /* @apply -translate-y-[4rem] -mb-[4rem]; */
 }
+
 section h2.centered {
   @apply text-center;
 }
+section h2.with-sep {
+  @apply @container;
+}
 section h2.with-sep.centered::before,
 section h2.with-sep::after {
-  @apply content-[""] block;
+  @apply content-[""] @[20rem]:flex-1;
   @apply bg-foreground;
   @apply w-full h-[0.16rem];
   @apply mt-[0.5rem];
 }
+
 section.papers-events .text-col.events i {
   @apply font-medium;
   @apply mr-[0.5rem];
@@ -158,5 +177,9 @@ a.main-cta {
   @apply w-fit;
   @apply bg-foreground/80;
   @apply text-[1.5rem] text-background font-semibold;
-  @apply px-[1.4rem] py-[0.5rem] rounded-[0.5rem] mt-[1rem];
+  @apply px-[1.4rem] py-[0.5rem] rounded-[0.5rem] mt-[1.5rem];
+}
+
+section:has(a.main-cta) + section.paper-events .text-col.events {
+  @apply -translate-y-[4rem] -mb-[4rem];
 }

@@ -64,7 +64,7 @@ const Home = () => {
           <h2>Selected Papers</h2>
 
           {PaperLinks.map((link, idx) => (
-            <p className="link" key={idx}>
+            <p key={idx} className="link">
               <a href={link.href}>
                 <b>{link.title}</b>
                 <br />
@@ -78,7 +78,7 @@ const Home = () => {
           <h2 className="with-sep centered">Upcoming Events</h2>
 
           {UpcomingEvents.map((event, idx) => (
-            <p key={idx}>
+            <p key={idx} className="event">
               <i>{event.date}: </i>
               {event.info}
             </p>

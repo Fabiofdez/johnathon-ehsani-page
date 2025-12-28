@@ -13,8 +13,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* --background: #0a0a0a;
-    --foreground: #dddddd; */
+    --background: #0a0a0a;
+    --foreground: #dddddd;
   }
 }
 
@@ -90,8 +90,8 @@ section.papers-events .text-col p,
 section.products .text-col p {
   @apply text-[1.3rem]/snug;
 }
-section .text-col.links p.link a,
-section .text-col.links p:not(:has(a)) {
+section .text-col p.link a,
+section .text-col p:not(:has(a)) {
   @apply -indent-[1.5rem] ml-[1.5rem] mb-[0.5rem];
 }
 

@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #c7c7c7;
   --foreground: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-crimson-serif);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* --background: #0a0a0a;
+    --foreground: #dddddd; */
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-serif;
+  @apply bg-background;
+  @apply text-foreground;
+}
+
+header.page-banner {
+  @apply relative;
+  @apply w-full;
+  @apply text-[1.6rem];
+  @apply py-[1.5rem] px-[2.3rem];
+  @apply z-10;
+}
+header.page-banner .title {
+  @apply text-[1.8rem] font-medium;
+}
+
+/* .page-bg {
+  @apply absolute inset-0;
+  @apply overflow-hidden;
+  @apply pointer-events-none;
+}
+
+.page-bg img {
+  @apply relative object-cover object-center;
+  @apply w-full h-full;
+  @apply opacity-60;
+} */
+
+section {
+  @apply relative;
+  @apply flex w-full;
+  @apply px-[2.3rem] py-[1.2rem] gap-[1.5rem];
+}
+
+section .text-col {
+  @apply block w-full;
+}
+section .text-col h2 {
+  @apply text-[2.6rem];
+}
+section .text-col p {
+  @apply text-[1.3rem]/relaxed font-light;
+}
+
+section.about-me {
+  @apply flex-row-reverse;
+}
+section.about-me .self-photo {
+  @apply shrink-0;
+  @apply w-[15rem] h-fit aspect-square;
+  @apply overflow-hidden rounded-full;
+  @apply pointer-events-none;
+}
+section.about-me .self-photo img {
+  @apply relative object-cover object-center;
+  @apply w-full h-full;
+}
+
+section.papers-events .text-col {
+  @apply overflow-hidden;
+}
+section.papers-events .text-col h2,
+section.products .text-col h2 {
+  @apply flex items-center;
+  @apply text-[2rem] text-nowrap;
+  @apply gap-[0.6rem] mb-[0.5rem];
+}
+section.papers-events .text-col p,
+section.products .text-col p {
+  @apply text-[1.3rem]/snug;
+}
+section .text-col.links p.link a,
+section .text-col.links p:not(:has(a)) {
+  @apply -indent-[1.5rem] ml-[1.5rem] mb-[0.5rem];
+}
+
+section .text-col.links {
+  @apply flex-2;
+}
+section .text-col.links p.link {
+  @apply wrap-anywhere;
+  @apply rounded-[0.5rem];
+}
+section .text-col.links p.link a {
+  @apply block;
+  @apply px-[0.8rem] py-[0.5rem];
+}
+section .text-col.links p.link b {
+  @apply font-semibold;
+}
+section .text-col.links p.link i {
+  @apply text-[0.9em];
+}
+section .text-col.links p.link:hover,
+section .text-col.links p.link:has(a:focus-visible) {
+  @apply bg-foreground/10;
+}
+section .text-col.links p.link:active {
+  @apply bg-foreground/20;
+}
+section .text-col.links p.link:hover b,
+section .text-col.links p.link:has(a:focus-visible) b {
+  @apply underline;
+}
+section .text-col.links p.link a:focus-visible {
+  @apply shadow-none;
+  @apply outline-none;
+}
+section .text-col.links p.link:has(a:focus-visible) {
+  @apply outline-[0.2rem] outline-foreground/65 -outline-offset-[0.2rem];
+}
+
+section.papers-events .text-col.events {
+  @apply flex-1;
+  @apply min-w-[22rem] max-w-[65vh];
+  @apply bg-foreground/5;
+  @apply px-[1rem] pt-[0.5rem] pb-[1rem] rounded-[0.5rem];
+  /* @apply -translate-y-[4rem] -mb-[4rem]; */
+}
+section h2.centered {
+  @apply text-center;
+}
+section h2.with-sep.centered::before,
+section h2.with-sep::after {
+  @apply content-[""] block;
+  @apply bg-foreground;
+  @apply w-full h-[0.16rem];
+  @apply mt-[0.5rem];
+}
+section.papers-events .text-col.events i {
+  @apply font-medium;
+  @apply mr-[0.5rem];
+}
+
+a.main-cta {
+  @apply flex;
+  @apply w-fit;
+  @apply bg-foreground/80;
+  @apply text-[1.5rem] text-background font-semibold;
+  @apply px-[1.4rem] py-[0.5rem] rounded-[0.5rem] mt-[1rem];
 }

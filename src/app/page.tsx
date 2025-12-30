@@ -1,15 +1,13 @@
 import { localFetch } from "@/util/fetch";
 import { Personal } from "@/util/info";
+import { IconArrowRight, IconExternalLink, IconPdf } from "@tabler/icons-react";
 import Image from "next/image";
 
-function parseReadableLink(mdString: string) {
-  const [_, title, href] = mdString.match(/\[(.*)\]\((.*)\)/) || [];
+function parseReadableLink(md: string) {
+  const [_, title, href] = md.match(/\[(.*)\]\((.*)\)/) || [];
+  const { host } = new URL(href);
 
-  return {
-    title,
-    href,
-    domain: new URL(href).host,
-  };
+  return { title, href, host };
 }
 
 function isNonEmpty(str: string) {
@@ -49,13 +47,14 @@ const Home = () => {
         </div>
 
         <div className="text-col">
-          <h2>About Me</h2>
+          <h2 className="max-sm:justify-self-center">About Me</h2>
 
           <p>{AboutMe}</p>
 
-          {/* <a className="main-cta" href="/contact">
+          <a className="main-cta max-sm:mx-auto" href="/contact">
             Get in Touch
-          </a> */}
+            <IconArrowRight />
+          </a>
         </div>
       </section>
 
@@ -66,9 +65,14 @@ const Home = () => {
           {PaperLinks.map((link, idx) => (
             <p key={idx} className="link">
               <a href={link.href}>
-                <b>{link.title}</b>
+                <b id="paper-title">
+                  {link.title}
+                  {link.href?.endsWith(".pdf") && (
+                    <IconPdf className="pdf-link" />
+                  )}
+                </b>
                 <br />
-                <i>{link.domain}</i>
+                <i id="paper-host">{link.host}</i>
               </a>
             </p>
           ))}
@@ -79,7 +83,7 @@ const Home = () => {
 
           {UpcomingEvents.map((event, idx) => (
             <p key={idx} className="event">
-              <i>{event.date}: </i>
+              <i id="event-date">{event.date}: </i>
               {event.info}
             </p>
           ))}
@@ -93,9 +97,9 @@ const Home = () => {
           {ResearchProducts.map((link, idx) => (
             <p className="link" key={idx}>
               <a href={link.href}>
-                <b>{link.title}</b>
+                <b id="product-title">{link.title}</b>
                 <br />
-                <i>{link.domain}</i>
+                <i id="product-host">{link.host}</i>
               </a>
             </p>
           ))}

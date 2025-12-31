@@ -77,10 +77,6 @@ const Contact = () => {
     <section className="contact">
       <form onSubmit={handleSubmit} inert={state.succeeded}>
         <h2 className="with-sep centered">Get In Touch</h2>
-        <p className="subtitle -translate-y-[0.5rem] md:mb-[0.5rem]">
-          For questions about &lt;work? papers? events?&gt;, please contact me
-          using the form provided here.
-        </p>
 
         <div className="input-row">
           <InputField
@@ -119,7 +115,7 @@ const Contact = () => {
         />
 
         <button
-          className="primary mx-auto"
+          className="primary mx-auto mt-[1rem]"
           id={SUBMIT_ID}
           type="submit"
           disabled={state.submitting}

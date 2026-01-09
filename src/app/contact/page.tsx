@@ -21,7 +21,7 @@ type InputFieldProps = InputHTMLAttributes<InputFieldType> & {
   textArea?: boolean;
 };
 
-const FORM_KEY = "mkonbvae";
+const FORM_KEY = "xeeoyyzy";
 
 const Contact = () => {
   const formRefs = useRef<{ [k: string]: FormRefType }>({});
